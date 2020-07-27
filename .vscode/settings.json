@@ -3,5 +3,14 @@
     "python.testing.promptToConfigure": false,
     "python.testing.pytestEnabled": false,
     "python.testing.unittestEnabled": false,
-    "python.testing.nosetestsEnabled": false
+    "python.testing.nosetestsEnabled": false,
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "Meteo DB",
+            "database": "${workspaceFolder:Django-Meteo}/db.sqlite3"
+        }
+    ],
+    "sqltools.useNodeRuntime": true
 }
