@@ -2,11 +2,50 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>João's WebSite</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <style type="text/css">
+      .sidenav {
+        height:100%;
+        width: 10%;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: #111;
+        overflow: hidden;
+        padding-top: 1%;
+      }
+
+      .sidenav a{
+        padding: 6% 8% 6% 16%;
+        text-decoration: none;
+        font-size: 200%;
+        color: #818181;
+        display:block;
+        font-family: 'Montserrat', sans-serif;
+      }
+
+      .sidenav a:hover{
+        color:#f1f1f1;
+      }
+
+      .main{
+        margin-left: 10%;
+        padding: 0% 1%;
+      }
+    </style>
+
+    <title>{% block title %}João's WebSite{% endblock %}</title>
   </head>
 
   <body>
-    <div id="content" , name="content">
+    <div class="sidenav">
+      <a href="/#">Home</a>
+      <a href="/create">Create</a>
+      <a href="/1">View</a>
+    </div>
+
+    <div id="content" , name="content", class="main">
         {% block content %} 
         {% endblock %}
     </div>
