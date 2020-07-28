@@ -3,9 +3,11 @@ from django.http import HttpResponse, HttpResponseRedirect
 from .models import *
 from .form import *
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from django.contrib.messages import get_messages
 
 # Create your views here.
-@login_required(login_url='login/')
+@login_required(login_url='/login')
 def index(response, id):
     ls = ToDoList.objects.get(id=id)
     if response.method == "POST":
@@ -27,11 +29,11 @@ def index(response, id):
     
     return render(response, "main/list.html", {"ls": ls})
 
-@login_required(login_url='login/')
-def home(response):
+@login_required(login_url='/login')
+def home(response): 
     return render(response, "main/home.html", {})
 
-@login_required(login_url='login/')
+@login_required(login_url='/login')
 def create(response):
     if response.method == "POST":
         form = CreateNewList(response.POST)
@@ -48,6 +50,7 @@ def create(response):
         form = CreateNewList()
     return render(response, "main/create.html", {"form": form})
 
+@login_required(login_url='/login')
 def view(response):
     return render(response, "main/view.html", {})
 
