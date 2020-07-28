@@ -1,0 +1,12 @@
+{% extends 'main/base.html' %}
+{% block title %} SSU - Login {% endblock title %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    {{form | crispy}}
+    <button type ="submit" class="btn btn-success">Login</button>
+    <p>Não tens conta? Regista-te <a href="register/">AQUI</a></p>
+</form>
+{% endblock %}
