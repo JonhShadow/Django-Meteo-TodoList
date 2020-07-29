@@ -17,10 +17,3 @@ def register(response):
             form = RegisterForm()
                 
         return render(response, "register/register.html", {"form":form})
-    
-def login(response):
-    if response.user.is_authenticated:
-        messages.info(response, "Já efetuou o login.Pode usufruir do Site Super Últil!")
-        return render(response, "main/home.html", {})
-    else:
-        return render(response, "registration/login.html", {})

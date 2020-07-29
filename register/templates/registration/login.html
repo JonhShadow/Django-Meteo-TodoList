@@ -3,10 +3,16 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<form method="post">
-    {% csrf_token %}
-    {{form | crispy}}
-    <button type ="submit" class="btn btn-success">Login</button>
-    <p>Não tens conta? Regista-te <a href="/register">AQUI</a></p>
-</form>
+{% if user.is_authenticated %}
+    <h4>Ola, {{ user.username }}!</h4>
+    <p>Já tens a tua seção iniciada. Usa e abusa do Site Super Útil!!</p>
+    <p>Usa a barra de navegação do lado esquerdo ;)</p>
+{% else %}
+    <form method="post">
+        {% csrf_token %}
+        {{form | crispy}}
+        <button type ="submit" class="btn btn-success">Login</button>
+        <p>Não tens conta? Regista-te <a href="/register">AQUI</a></p>
+    </form>
+{% endif %}
 {% endblock %}
