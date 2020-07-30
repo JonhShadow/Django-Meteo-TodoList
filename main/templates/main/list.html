@@ -2,7 +2,14 @@
 {% block title %}João's WebSite - Lista{% endblock %}
 
 {% block content %}
-    <h2>{{ls.name}}</h2>
+    <div class="row">
+        <div class="col-md-auto">
+            <h3>{{ls.name}}</h3>
+        </div>
+        <div class="col">
+            <p>{{ls.list_type}}</p>
+        </div>
+    </div>
     <form method="post" action="#">
         {% csrf_token %}
         {% for item in ls.item_set.all %}
@@ -21,10 +28,12 @@
         {% endfor %}
 
         <div class="input-group mb-3">
+            <input type ="text", name="new">
+        </div>
+        <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <button type = "submit", name="newItem", value="newItem", class="btn btn-success">Add Item</button>
             </div>
-            <input type ="text", name="new">
         </div>
 
         <button type = "submit", name="save", value="save", class="btn btn-info">Guardar</button>

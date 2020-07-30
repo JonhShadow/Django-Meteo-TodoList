@@ -1,15 +1,13 @@
 {% extends "main/base.html" %}
+{% load crispy_forms_tags %}
+
 {% block title %}João's WebSite - Nova Lista{% endblock %}
 
 {% block content %}
 <h3>Criar Lista</h3>
 <form method="post" action="/create/" class="form-group">
     {% csrf_token %}
-    <div class="input-group mb-3">
-        <div class="input-group-prepend">
-            <button type= "submit", name = "save" class="btn btn-success">Criar</button>
-        </div>
-        {{form.name}}
-    </div>
+    {{form | crispy}}
+    <button type= "submit", name = "save" class="btn btn-success">Criar</button>
 </form>
 {% endblock %}

@@ -40,7 +40,9 @@ def create(response):
         
         if form.is_valid():
             n = form.cleaned_data["name"]
-            t = ToDoList(name = n)
+            l = form.cleaned_data["list_type"]
+            
+            t = ToDoList(name = n, list_type = l)
             t.save()
             response.user.todolist.add(t)
             
