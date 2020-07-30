@@ -1,0 +1,102 @@
+.sidenav {
+    background-color: #111;
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    position: fixed;
+    height: 100%;
+  }
+
+  .sidenav a{
+    color: #818181;
+    font-family: 'Montserrat', sans-serif;
+    display: block;
+    padding: 16px;
+    text-decoration: none;
+    font-size: 160%;
+  }
+
+  .sidenav a:hover{
+    color:#f1f1f1;
+  }
+
+  .main{
+    margin-left: 200px;
+    padding: 1px 16px;
+    height: 1000px;
+  }
+
+  .user-info span{
+    padding: 16px;
+    text-decoration: none;
+    font-size: 100%;
+    color: rgb(155, 255, 222);
+    display:block;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .sidenav .side-logout, .side-login{
+    color: rgb(155, 255, 222);
+  }
+
+  .user-info .side-login{
+    color: rgb(155, 255, 222);
+  }
+  .main nav{
+    display: flex;
+    justify-content:left;
+    align-items: center;
+  }
+  .burger{
+    display: none;
+    cursor: pointer;
+    padding-right: 30px;
+  }
+
+  .burger div{
+    width: 28px;
+    height: 3px;
+    background-color: #111;
+    margin: 6px;
+  }
+
+  
+  @media screen and (max-width: 768px) {
+    body{
+      overflow-x: hidden;
+    }
+    .burger{
+      display:block;
+    }
+    .sidenav{
+      position:absolute;
+      right: 0px;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      width: 50%;
+      transform: translateX(100%);
+      transition: transform 0.2s ease-in;
+      z-index: 1;
+    }
+    .sidenav a, .user-info{
+      opacity: 0;
+    }
+    .main{
+      margin-left: 0px;
+    }
+  }
+
+  .sidenav-active{
+    transform: translateX(0%);
+  }
+
+  @keyframes sidenavFade{
+    from{
+      opacity: 0;
+    }
+    to{
+      opacity: 1;
+    }
+  }
+
