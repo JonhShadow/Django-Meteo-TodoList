@@ -11,4 +11,9 @@ function edit(id) {
     document.getElementById(id).readOnly = false;
   } 
 
+function prio(){
+    name = {{ls.name}};
+    console.log(name);
+}
+
 

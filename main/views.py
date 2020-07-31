@@ -18,7 +18,7 @@ def index(response, id):
                 else:
                     item.complete = False
                 txt = response.POST.get("t"+ str(item.id))
-                print(txt)
+                #print(txt)
                 item.text = txt
                 
                 item.save()
