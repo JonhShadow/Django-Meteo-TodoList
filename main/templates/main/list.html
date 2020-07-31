@@ -29,12 +29,12 @@
                 </div>
             </div>
             {% if item.complete == False %}
-                <input type="text", value="{{item.text}}", class="form-control" name={{item.id}} readonly>
+                <input type="text", value="{{item.text}}", class="form-control" id='{{item.id}}' name="t{{item.id}}" readonly>
             {% else %} 
-                <input type="text", value="{{item.text}}", class="form-control"  id='done' readonly>
+                <input type="text", value="{{item.text}}", class="form-control done" id='{{item.id}}' name="t{{item.id}}" readonly>
             {% endif %} 
-            <button class="btn btn-success btn-lm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit" ><i class="fas fa-pen"></i></button>
-            <button class="btn btn-danger btn-lm rounded-0" type="submit" data-toggle="tooltip" data-placement="top" value='{{item.id}}' name='delete' title='Eliminar este item'><i class="far fa-trash-alt"></i></button> 
+            <button onclick='edit({{item.id}})' class="btn btn-success btn-lm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit" ><i class="fas fa-pen"></i></button>
+            <button class="btn btn-danger btn-lm round" type="submit" data-toggle="tooltip" data-placement="top" value='{{item.id}}' name='delete' title='Eliminar este item'><i class="far fa-trash-alt"></i></button> 
         </div>
         {% endfor %}
         <div class="form-inline">

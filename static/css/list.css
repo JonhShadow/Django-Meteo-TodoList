@@ -1,4 +1,12 @@
-#done{
+input.done{
     text-decoration: line-through;
     color: rgb(131, 153, 156);
+}
+
+button.round{
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
+    
+    border-bottom-right-radius: 4px;
+    border-top-right-radius: 4px;
 }

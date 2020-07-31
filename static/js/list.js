@@ -6,8 +6,9 @@ function validateForm2(){
     document.getElementById("new").required = false;
 }
 
-function onLoadBody() {
-    document.getElementById('control_EMAIL').readOnly = true;
+function edit(id) {
+    console.log(id)
+    document.getElementById(id).readOnly = false;
   } 
 
 
