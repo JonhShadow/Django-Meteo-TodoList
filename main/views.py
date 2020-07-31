@@ -21,8 +21,14 @@ def index(response, id):
                 item.save()
         elif response.POST.get("newItem"):
             txt = response.POST.get("new")
-            if len(txt) >=2:
-                ls.item_set.create(text = txt, complete = False)
+            
+            prio = response.POST.get('prio')
+            if prio == 'Prioridade':
+                prio = 'None'
+            
+            date = response.POST.get('date')
+            if len(txt) >=1:
+                ls.item_set.create(text=txt, item_priority=prio, deadline_date=date, complete=False)
             else:
                 print("invalid")
                     
