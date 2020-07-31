@@ -13,3 +13,15 @@ class CreateNewList(forms.Form):
     
     list_type = forms.ChoiceField(label='Tipo de Lista', choices=LIST)
     #check = forms.BooleanField(required=False)
+    
+class CreateNewItem(forms.Form):
+    text = forms.CharField(label='Nome', max_length=300)
+    
+    LIST =  [('Alta', 'Alta'),
+        ('Media', 'Media'),
+        ('Baixa','Baixa'),
+        ('Nenhum', 'Nenhum'),
+        ]
+    
+    item_priority = forms.ChoiceField(label='Prioridade', choices=LIST, required=False)
+    deadline_date = forms.DateField(label='DeadLine', required=False)

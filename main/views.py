@@ -25,8 +25,7 @@ def index(response, id):
                 ls.item_set.create(text = txt, complete = False)
             else:
                 print("invalid")
-                
-    
+                    
     return render(response, "main/list.html", {"ls": ls})
 
 @login_required(login_url='/login')
