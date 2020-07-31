@@ -31,6 +31,9 @@ def index(response, id):
                 ls.item_set.create(text=txt, item_priority=prio, deadline_date=date, complete=False)
             else:
                 print("invalid")
+        elif response.POST.get("delete"):
+            id = response.POST.get('delete')
+            ls.item_set.get(id=id).delete()
                     
     return render(response, "main/list.html", {"ls": ls})
 

@@ -15,7 +15,7 @@
             <p>{{ls.list_type}}</p>
         </div>
     </div>
-    <form method="post" action="#" class="form-group">
+    <form method="post" action="" class="form-group">
         {% csrf_token %}
         {% for item in ls.item_set.all %}
         <div class="input-group mb-3">
@@ -29,10 +29,12 @@
                 </div>
             </div>
             {% if item.complete == False %}
-                <input type="text", value="{{item.text}}", class="form-control" readonly>
+                <input type="text", value="{{item.text}}", class="form-control" name={{item.id}} readonly>
             {% else %} 
-                <input type="text", value="{{item.text}}", class="form-control" id='done' readonly>
-            {% endif %}  
+                <input type="text", value="{{item.text}}", class="form-control"  id='done' readonly>
+            {% endif %} 
+            <button class="btn btn-success btn-lm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit" ><i class="fas fa-pen"></i></button>
+            <button class="btn btn-danger btn-lm rounded-0" type="submit" data-toggle="tooltip" data-placement="top" value='{{item.id}}' name='delete' title='Eliminar este item'><i class="far fa-trash-alt"></i></button> 
         </div>
         {% endfor %}
         <div class="form-inline">

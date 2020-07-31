@@ -29,7 +29,7 @@ class Item(models.Model):
     text = models.CharField(max_length=300)
     complete = models.BooleanField()# OPCIONAL
     item_priority = models.CharField(blank=True, choices=item_priority_choices.choices, max_length = 100) # OPCIONAL
-    deadline_date = models.DateTimeField(blank = True, null=True) # OPCIONAL
+    deadline_date = models.DateTimeField(blank = True, null=True, default='none') # OPCIONAL
     
     
     def __str__(self):
