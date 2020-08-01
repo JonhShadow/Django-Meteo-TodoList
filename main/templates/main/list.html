@@ -31,10 +31,11 @@
                 </div>
             </div>
             {% if item.complete == False %}
-                <input type="text", value="{{item.text}}", class="form-control" id='{{item.id}}' name="t{{item.id}}" readonly>
+                <input type="text", value="{{item.text}}", class="form-control {{item.item_priority}}" id='{{item.id}}' name="t{{item.id}}" readonly>
             {% else %} 
-                <input type="text", value="{{item.text}}", class="form-control done" id='{{item.id}}' name="t{{item.id}}" readonly>
-            {% endif %} 
+                <input type="text", value="{{item.text}}", class="form-control done {{item.item_priority}}" id='{{item.id}}' name="t{{item.id}}" readonly>
+            {% endif %}
+            <input type="text" value="{{item.deadline_date}}" id="d{{item.id}}" name="d{{item.id}}" class="form-control date" readonly>
             <button onclick='edit({{item.id}})' class="btn btn-success btn-lm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit" ><i class="fas fa-pen"></i></button>
             <button class="btn btn-danger btn-lm round" type="submit" data-toggle="tooltip" data-placement="top" value='{{item.id}}' name='delete' title='Eliminar este item'><i class="far fa-trash-alt"></i></button> 
         </div>
@@ -60,9 +61,9 @@
             <div class="col">
                 <select class="custom-select" name='prio'>
                     <option selected>Prioridade</option>
-                    <option value="Alta">Alta</option>
-                    <option value="Media">Media</option>
-                    <option value="Baixa">Baixa</option>
+                    <option style="background-color:rgba(255, 89, 89, 0.65);" value="Alta">Alta</option>
+                    <option style="background-color:rgba(250, 208, 79, 0.65);" value="Media">Media</option>
+                    <option style="background-color:rgba(81, 210, 102, 0.65);" value="Baixa">Baixa</option>
                 </select>
             </div>
             <div class="col">

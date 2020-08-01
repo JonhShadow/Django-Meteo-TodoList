@@ -18,8 +18,11 @@ def index(response, id):
                 else:
                     item.complete = False
                 txt = response.POST.get("t"+ str(item.id))
-                #print(txt)
+                date = response.POST.get("d"+ str(item.id))
+                item.deadline_date = date
                 item.text = txt
+                
+                print(item.deadline_date)
                 
                 item.save()
         elif response.POST.get("newItem"):
