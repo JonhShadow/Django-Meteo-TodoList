@@ -1,6 +1,8 @@
 function edit(id) {
     console.log(id)
-
+    
+    document.getElementById(id).classList.toggle("active");
+    document.getElementById(id).onclick = false;
     document.getElementById(id).readOnly = false;
 
     console.log("out")

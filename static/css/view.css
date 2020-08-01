@@ -12,6 +12,11 @@ input.txt{
 
 input[type=text].txt{
     background-color: white;
+    color: black;
+}
+
+input[type=text].txt.active{
+    cursor: auto;
 }
 
 .input-group-text{
