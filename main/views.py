@@ -82,5 +82,10 @@ def create(response):
 
 @login_required(login_url='/login')
 def view(response):
+    if response.method == "POST":
+        if response.POST.get("delete"):
+            id = response.POST.get('delete')
+            response.user.todolist.get(id=id).delete()
+        
     return render(response, "main/view.html", {})
 
