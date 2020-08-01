@@ -52,9 +52,20 @@ input.Baixa{
     filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#E9ECEF", endColorstr="#84E494", GradientType=1 );
 }
 
+div.row{
+    margin-bottom: 20px;
+}
+div.col{
+    padding-left: 0%;
+}
+
 
 @media screen and (max-width: 768px) {
     input.date{
         display: none;
+    }
+
+    div.col{
+        padding-left: 15px;
     }
 }

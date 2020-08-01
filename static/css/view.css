@@ -1,0 +1,50 @@
+span.icon{
+    background-color: white;
+    border-right: none;
+}
+
+input.txt{
+    border-left: none;
+    padding-left: 0%;
+    cursor: pointer;
+    background-color: white;
+}
+
+input[type=text].txt{
+    background-color: white;
+}
+
+.input-group-text{
+    border-color: #dfdfdf;
+}
+.fas.fa-home{
+    color: #1B8A95
+}
+
+.fas.fa-graduation-cap{
+    color: black;
+}
+
+.fas.fa-briefcase{
+    color: coral;
+}
+
+.fas.fa-mug-hot{
+    color: rebeccapurple;
+}
+
+.fas.fa-list{
+    color: #FFA500;
+}
+
+button.round{
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
+
+    border-bottom-right-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+div h2{
+    margin-bottom: 20px;
+}

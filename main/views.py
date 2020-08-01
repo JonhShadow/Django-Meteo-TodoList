@@ -12,17 +12,30 @@ def index(response, id):
     ls = ToDoList.objects.get(id=id)
     if response.method == "POST":
         if response.POST.get("save"):
+            if response.POST.get("complete") == "clicked":
+                ls.finish = True
+                ls.save()
+                for i in ls.item_set.all():
+                    print(i.complete)
+                    i.complete = True
+                    print(i.complete)
+                    i.save()
+                return render(response, "main/list.html", {"ls": ls})
+
+            else:
+                ls.finish = False
+                ls.save()
+                
             for item in ls.item_set.all():
                 if response.POST.get("c"+ str(item.id)) == "clicked":
                     item.complete = True
                 else:
                     item.complete = False
+                    
                 txt = response.POST.get("t"+ str(item.id))
                 date = response.POST.get("d"+ str(item.id))
-                item.deadline_date = date
+                #item.deadline_date = date
                 item.text = txt
-                
-                print(item.deadline_date)
                 
                 item.save()
         elif response.POST.get("newItem"):
@@ -42,6 +55,7 @@ def index(response, id):
             ls.item_set.get(id=id).delete()
                     
     return render(response, "main/list.html", {"ls": ls})
+    
 
 @login_required(login_url='/login')
 def home(response): 
@@ -49,6 +63,7 @@ def home(response):
 
 @login_required(login_url='/login')
 def create(response):
+    form = CreateNewList()
     if response.method == "POST":
         form = CreateNewList(response.POST)
         
@@ -63,8 +78,7 @@ def create(response):
         return HttpResponseRedirect("/%i" %t.id)
     
     else:
-        form = CreateNewList()
-    return render(response, "main/create.html", {"form": form})
+        return render(response, "main/create.html", {"form": form})
 
 @login_required(login_url='/login')
 def view(response):
