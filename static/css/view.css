@@ -17,6 +17,9 @@ input[type=text].txt{
 
 input[type=text].txt.active{
     cursor: auto;
+    border: 1px solid rgba(0,0,0,.125);
+    background-color: rgba(1, 145, 49, 0.158);
+
 }
 
 .input-group-text{
@@ -52,4 +55,8 @@ button.round{
 
 div h2{
     margin-bottom: 20px;
+}
+
+button.save{
+    display: none;
 }

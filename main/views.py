@@ -86,6 +86,15 @@ def view(response):
         if response.POST.get("delete"):
             id = response.POST.get('delete')
             response.user.todolist.get(id=id).delete()
-        
+        elif response.POST.get("save"):
+            id = response.POST.get("save")
+            print(id)
+            txt = response.POST.get("t"+ str(id))
+            print('txt '+ txt)
+            for i in response.user.todolist.all():
+                if i.id == int(id):
+                    i.name = txt
+                    i.save()
+            
     return render(response, "main/view.html", {})
 

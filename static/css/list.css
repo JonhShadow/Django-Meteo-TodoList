@@ -69,3 +69,12 @@ div.col{
         padding-left: 15px;
     }
 }
+
+.fas.fa-arrow-down{
+    margin-left: 10px;
+}
+
+.none_items{
+    justify-content: center;
+    font-weight: 500;
+}

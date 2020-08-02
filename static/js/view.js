@@ -1,11 +1,14 @@
 function edit(id) {
-    console.log(id)
-    
+    console.log(id);
+
     document.getElementById(id).classList.toggle("active");
     document.getElementById(id).onclick = false;
     document.getElementById(id).readOnly = false;
 
-    console.log("out")
+    save = "s"+id;
+    document.getElementById(save).style.display = "inline";
+
+    console.log("out");
 } 
 
 function redirect(id){

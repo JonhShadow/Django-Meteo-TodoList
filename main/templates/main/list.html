@@ -18,6 +18,9 @@
         </div>
     </div>
     <form method="post" action="" class="form-group">
+        {% if ls.item_set.all.count == 0 %}
+                <p class="none_items">Não tens nenhum tarefa criada! Cria uma com os campos em baixo.<i class="fas fa-arrow-down"></i></p>
+        {% endif %}
         {% csrf_token %}
         {% for item in ls.item_set.all %}
         <div class="input-group mb-3">

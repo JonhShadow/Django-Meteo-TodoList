@@ -29,7 +29,8 @@
                                                                         </a>
                                                                     </span>
                     </div>
-                    <input onclick="redirect({{td.id}})" id="{{td.id}}" readonly type="text" href="/{{td.id}}" value="{{td.name}}" class="txt form-control list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                    <input onclick="redirect({{td.id}})" id="{{td.id}}" name="t{{td.id}}" readonly type="text" href="/{{td.id}}" value="{{td.name}}" class="txt form-control list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                    <button id="s{{td.id}}" value="{{td.id}}" name="save" type="submit" class="btn btn-info btn-lm rounded-0 save"><i class="far fa-save"></i></button>
                     <button onclick='edit({{td.id}})' class="btn btn-success btn-lm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit" ><i class="fas fa-pen"></i></button>
                     <button class="btn btn-danger btn-lm round" type="submit" data-toggle="tooltip" data-placement="top" value='{{td.id}}' name='delete' title='Eliminar este item'><i class="far fa-trash-alt"></i></button>            
                 </div>
