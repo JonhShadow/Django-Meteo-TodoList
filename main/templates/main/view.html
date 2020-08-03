@@ -15,7 +15,8 @@
             {% for td in user.todolist.all %}
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                        <span class="input-group-text icon" title="{{td.list_type}}" id="basic-addon2"><a href="/{{td.id}}" class="list-group-item-action">{% if td.list_type == "Casa" %}
+                        <span class="input-group-text icon" title="{{td.list_type}}" id="basic-addon2"><a href="/{{td.id}}" class="list-group-item-action">
+                                                                        {% if td.list_type == "Casa" %}
                                                                             <i class="fas fa-home"></i>
                                                                         {% elif  td.list_type == "Trabalho" %}
                                                                             <i class="fas fa-briefcase"></i>

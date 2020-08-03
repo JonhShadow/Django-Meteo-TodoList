@@ -1,8 +1,51 @@
 {% extends "main/base.html" %}
+{% load static %}
+{% load mathfilters %}
+
+{% block head %}  
+    <link rel='stylesheet' type="text/css" href="{% static '/css/home.css' %}">
+{% endblock %}
 
 {% block title %}SSU - Home{% endblock %}
 
 {% block content %}
     <h1>Home</h1>
+    <div class="table-responsive">
+        <table class="table table-hover table-striped">
+            <thead>
+                <tr class="tr_head">
+                  <th  scope="col">Lista</th>
+                  <th scope="col">Tipo</th>
+                  <th scope="col">%</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for td in user.todolist.all %}
+                    <tr>
+                        <td>{% if td.list_type == "Casa" %}
+                            <i class="fas fa-home"></i>
+                        {% elif  td.list_type == "Trabalho" %}
+                            <i class="fas fa-briefcase"></i>
+                        {% elif  td.list_type == "Universidade" %}
+                            <i class="fas fa-graduation-cap"></i>
+                        {% elif  td.list_type == "Hobby" %}
+                            <i class="fas fa-mug-hot"></i>
+                        {% else %}
+                            <i class="fas fa-list"></i>
+                        {% endif %}{{td.name}}</th>
+                        <td>{{td.list_type}}</th>
+                        <td>{% for item in td.item_set.all %}
+                                
+                            {% endfor %}
+                        </th>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
+{% endblock %}
+
+{% block js %}
+    <script src="{% static '/js/home.js' %}"></script>
 {% endblock %}
