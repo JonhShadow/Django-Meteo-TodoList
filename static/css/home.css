@@ -25,3 +25,12 @@
 i{
     margin-right: 10px;
 }
+
+.fas.fa-check{
+    align-items: center;
+    color: green;
+}
+
+.link{
+    cursor: pointer;
+}

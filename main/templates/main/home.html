@@ -22,7 +22,7 @@
             </thead>
             <tbody>
                 {% for td in user.todolist.all %}
-                    <tr>
+                    <tr class="link" onclick="redirect({{td.id}})">
                         <td>{% if td.list_type == "Casa" %}
                             <i class="fas fa-home"></i>
                         {% elif  td.list_type == "Trabalho" %}
@@ -36,8 +36,10 @@
                         {% endif %}{{td.name}}</th>
                         <td>{{td.list_type}}</th>
                         <td>
-                            {% if td.finish == True%}
-                                certo
+                            {% if td.finish == True %}
+                                <i class="fas fa-check"></i>
+                            {% elif percent|index:forloop.counter0 == "100%" %}
+                                <i class="fas fa-check"></i>
                             {% else %}
                                 {{percent|index:forloop.counter0}}
                             {% endif %}

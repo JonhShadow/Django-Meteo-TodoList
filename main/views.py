@@ -71,8 +71,6 @@ def home(response):
         else:
             percent.append(str(round((100*true)/al)) +'%')
     
-    print(percent)
-    
     return render(response, "main/home.html", {'percent': percent})
 
 @login_required(login_url='/login')
