@@ -1,6 +1,7 @@
 {% extends "main/base.html" %}
 {% load static %}
 {% load mathfilters %}
+{% load index %}
 
 {% block head %}  
     <link rel='stylesheet' type="text/css" href="{% static '/css/home.css' %}">
@@ -34,9 +35,8 @@
                             <i class="fas fa-list"></i>
                         {% endif %}{{td.name}}</th>
                         <td>{{td.list_type}}</th>
-                        <td>{% for item in td.item_set.all %}
-                                
-                            {% endfor %}
+                        <td>
+                            {{percent|index:forloop.counter0}}
                         </th>
                     </tr>
                 {% endfor %}

@@ -58,8 +58,24 @@ def index(response, id):
     
 
 @login_required(login_url='/login')
-def home(response): 
-    return render(response, "main/home.html", {})
+def home(response):
+    id = response.user.id
+    ls = ToDoList.objects.filter(user_id=id).all()
+    percent = []
+    
+    for item in ls:
+        al = item.item_set.all().count()
+        true = item.item_set.filter(complete = 'True').count()
+        if true == 0:
+            print(0)
+            percent.append(str(0))
+        else:
+            percent.append(str(al/true))
+            print(al/true)
+    
+    print(percent)
+    
+    return render(response, "main/home.html", {'percent': percent})
 
 @login_required(login_url='/login')
 def create(response):
