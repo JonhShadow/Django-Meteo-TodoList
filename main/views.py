@@ -67,11 +67,9 @@ def home(response):
         al = item.item_set.all().count()
         true = item.item_set.filter(complete = 'True').count()
         if true == 0:
-            print(0)
-            percent.append(str(0))
+            percent.append(str(0)+'%')
         else:
-            percent.append(str(al/true))
-            print(al/true)
+            percent.append(str(round((100*true)/al)) +'%')
     
     print(percent)
     

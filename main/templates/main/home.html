@@ -17,7 +17,7 @@
                 <tr class="tr_head">
                   <th  scope="col">Lista</th>
                   <th scope="col">Tipo</th>
-                  <th scope="col">%</th>
+                  <th scope="col">Estado</th>
                 </tr>
             </thead>
             <tbody>
@@ -36,7 +36,11 @@
                         {% endif %}{{td.name}}</th>
                         <td>{{td.list_type}}</th>
                         <td>
-                            {{percent|index:forloop.counter0}}
+                            {% if td.finish == True%}
+                                certo
+                            {% else %}
+                                {{percent|index:forloop.counter0}}
+                            {% endif %}
                         </th>
                     </tr>
                 {% endfor %}
