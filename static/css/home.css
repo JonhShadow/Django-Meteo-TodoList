@@ -1,5 +1,18 @@
-.tr_head{
+th{
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
     
+}
+th:hover{
+    background-color: #a7ffe2ee;
+}
+
+table th {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background: #98cdf7;
 }
 
 .fas.fa-home{
@@ -34,3 +47,28 @@ i{
 .link{
     cursor: pointer;
 }
+
+th i{
+    align-items: center;
+    margin-left: 6px;
+}
+
+.fas.fa-minus.sort_up:before{
+    content: "\f0de";
+
+}
+
+.fas.fa-minus.sort_down:before{
+    content: "\f0dd";
+}
+
+.table-wrapper-scroll-y{
+    display: block;
+}
+
+.my-custom-scrollbar{
+    position: relative;
+    height: 30vh;
+    overflow: auto;
+    }
+

@@ -12,18 +12,17 @@
 
 {% block content %}
     <h1>Home</h1>
-    <div class="table-responsive">
-        <p><button onclick="sortTable()">Sort</button></p>
-        <table class="table table-hover table-striped" id="myTable" >
+    <div class="table-wrapper-scroll-y table-responsive my-custom-scrollbar">
+        <table class="table table-hover table-striped mb-0" id="myTable" >
             <thead>
                 <tr class="tr_head">
-                  <th  scope="col">Lista</th>
-                  <th scope="col">Tipo</th>
-                  <th scope="col">Estado</th>
+                  <th  scope="col"onclick="sortTable(0)" >Lista</th>
+                  <th scope="col" onclick="sortTable(1)" >Tipo</th>
+                  <th scope="col" onclick="sortEstado(2)" >Estado<i class="fas fa-minus" id = "sort_%"></i></th>
                 </tr>
             </thead>
             <tbody>
-                {% for td in user.todolist.all|order_by:"list_type" %}
+                {% for td in user.todolist.all %}
                     <tr class="link" onclick="redirect({{td.id}})">
                         <td>{% if td.list_type == "Casa" %}
                             <i class="fas fa-home"></i>
