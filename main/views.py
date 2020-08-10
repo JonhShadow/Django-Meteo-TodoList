@@ -70,6 +70,9 @@ def home(response):
             percent.append(str(0)+'%')
         else:
             percent.append(str(round((100*true)/al)) +'%')
+            
+    ls = ls.order_by('name')
+    print(ls)
     
     return render(response, "main/home.html", {'percent': percent})
 
