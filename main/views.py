@@ -6,6 +6,9 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.messages import get_messages
 
+import requests
+import urllib.request
+
 # Create your views here.
 @login_required(login_url='/login')
 def index(response, id):
@@ -59,6 +62,23 @@ def index(response, id):
 
 @login_required(login_url='/login')
 def home(response):
+    def get_weather():
+        #city = entry.get()        
+        city = "Fafe"       
+        apikey = '83861d949bdda6cba17ddc9f7d095655'
+        api_url = 'http://api.openweathermap.org/data/2.5/weather'
+        
+        params = {'APPID' : apikey, 'q' : city,  'units' : 'metric', 'lang' : 'pt'}
+        response = requests.get(api_url, params = params)
+        weather = response.json()
+        
+        icon = weather['weather'][0]['icon']
+        icon = str('http://openweathermap.org/img/wn/'+icon+'@2x.png')
+        
+        w = { 'city':weather['name'], 'country':weather['sys']['country'], 'desc':weather['weather'][0]['description'], 'temp':weather['main']['temp'], 'icon':icon }
+        print(w)
+        return w
+    
     id = response.user.id
     ls = ToDoList.objects.filter(user_id=id).all()
     percent = []
@@ -71,10 +91,9 @@ def home(response):
         else:
             percent.append(str(round((100*true)/al)) +'%')
             
-    ls = ls.order_by('name')
-    print(ls)
-    
-    return render(response, "main/home.html", {'percent': percent})
+    w = get_weather()
+
+    return render(response, "main/home.html", {'percent': percent, 'weather': w})
 
 @login_required(login_url='/login')
 def create(response):

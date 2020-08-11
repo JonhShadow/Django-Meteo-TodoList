@@ -11,7 +11,7 @@
 {% block title %}SSU - Home{% endblock %}
 
 {% block content %}
-    <h1>Home</h1>
+    <h3>O que vais fazer hoje?</h3>
     <div class="table-wrapper-scroll-y table-responsive my-custom-scrollbar">
         <table class="table table-hover table-striped mb-0" id="myTable" >
             <thead>
@@ -49,6 +49,11 @@
                 {% endfor %}
             </tbody>
         </table>
+    </div>
+    <div class="content">
+        {% for x in weather.values %}
+            <h3>{{x}}</h3>
+        {% endfor %}
     </div>
 
 {% endblock %}
