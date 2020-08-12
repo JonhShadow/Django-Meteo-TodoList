@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'iqv8c#n6$j*exc36p-+g7i=!1!&&e-9w)y)zur7m6@b%8^!gd7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['todo-weather.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
