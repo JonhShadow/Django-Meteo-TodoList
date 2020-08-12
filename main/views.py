@@ -9,6 +9,7 @@ from django.contrib.messages import get_messages
 import requests
 import urllib.request
 
+
 # Create your views here.
 @login_required(login_url='/login')
 def index(response, id):
@@ -98,12 +99,14 @@ def home(response):
             city = response.POST.get("city")
             w = get_weather(city)
             if w == '404':
-                w ='Cidade não encontrada'
                 print(w)
     else:
-         w = get_weather("Coimbra")
-            
-
+        loc = requests.get("https://ipinfo.io/").json()
+        print(loc['city'])
+        w = get_weather(loc['city'])
+    
+    
+    
     return render(response, "main/home.html", {'percent': percent, 'weather': w})
 
 @login_required(login_url='/login')

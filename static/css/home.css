@@ -96,7 +96,13 @@ h3{
 .row.temp{
     display: flex;
     align-items: center;
-  }
+}
+.not_found{
+    font-family: 'Open Sans', sans-serif;
+    margin-top: 1vh;
+    letter-spacing: 1px;
+    color: #1B8A95;
+}
 
 
 

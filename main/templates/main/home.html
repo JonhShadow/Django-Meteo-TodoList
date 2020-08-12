@@ -51,39 +51,44 @@
             </tbody>
         </table>
     </div>
-
+    <hr class="mt-4 mb-3">
     <form action="/" method="post">
         {% csrf_token %}
-        <div class="form-row mt-5">
+        <div class="form-row mt-4">
             <div class="col-md-4 mb-3">
-                <input type="text" name="city" placeholder="ex. Lisboa, Madrid " class="form-control">
-                <div>
-                    {{w}}
-                </div>
+                <input type="text" name="city" placeholder="ex. Lisboa, Madrid " class="form-control input">
+                {% if weather == "404" %}
+                    <div class="not_found">
+                        Cidade não encrontrada
+                    </div>
+                {% endif %}
             </div>
             <div class="col-md-4 mb-3">
                 <button type="submit" value="weather" name="weather" class="btn btn-primary">Ver Tempo</button>
             </div>
         </div>
     </form>
-    <div class="row">
-        <div class="col city">
-            {{weather.city}}, {{weather.country}}
+    {% if weather == "404" %}
+    {% else %}
+        <div class="row">
+            <div class="col city">
+                {{weather.city}}, {{weather.country}}
+            </div>
         </div>
-    </div>
-    <div class="row temp">
-        <div class="col-auto temp">
-            {{weather.temp}}
+        <div class="row temp">
+            <div class="col-auto temp">
+                {{weather.temp}}
+            </div>
+            <div class="col icon">
+                <img src="{{weather.icon}}">
+            </div>
         </div>
-        <div class="col icon">
-            <img src="{{weather.icon}}">
+        <div class="row">
+            <div class="col desc">
+                {{weather.desc}}
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col desc">
-            {{weather.desc}}
-        </div>
-    </div>
+    {% endif %}
 
 {% endblock %}
 
