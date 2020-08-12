@@ -62,15 +62,16 @@ def index(response, id):
 
 @login_required(login_url='/login')
 def home(response):
-    def get_weather():
-        #city = entry.get()        
-        city = "Fafe"       
+    def get_weather(user_in):      
+        city = user_in     
         apikey = '83861d949bdda6cba17ddc9f7d095655'
         api_url = 'http://api.openweathermap.org/data/2.5/weather'
         
         params = {'APPID' : apikey, 'q' : city,  'units' : 'metric', 'lang' : 'pt'}
         response = requests.get(api_url, params = params)
         weather = response.json()
+        if weather['cod'] == '404':
+            return '404'
         
         icon = weather['weather'][0]['icon']
         icon = str('http://openweathermap.org/img/wn/'+icon+'@2x.png')
@@ -91,7 +92,17 @@ def home(response):
         else:
             percent.append(str(round((100*true)/al)) +'%')
             
-    w = get_weather()
+    
+    if response.method == "POST":
+        if response.POST.get("weather"):
+            city = response.POST.get("city")
+            w = get_weather(city)
+            if w == '404':
+                w ='Cidade não encontrada'
+                print(w)
+    else:
+         w = get_weather("Coimbra")
+            
 
     return render(response, "main/home.html", {'percent': percent, 'weather': w})
 

@@ -6,6 +6,7 @@
 
 {% block head %}  
     <link rel='stylesheet' type="text/css" href="{% static '/css/home.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
 {% endblock %}
 
 {% block title %}SSU - Home{% endblock %}
@@ -50,10 +51,38 @@
             </tbody>
         </table>
     </div>
-    <div class="content">
-        {% for x in weather.values %}
-            <h3>{{x}}</h3>
-        {% endfor %}
+
+    <form action="/" method="post">
+        {% csrf_token %}
+        <div class="form-row mt-5">
+            <div class="col-md-4 mb-3">
+                <input type="text" name="city" placeholder="ex. Lisboa, Madrid " class="form-control">
+                <div>
+                    {{w}}
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <button type="submit" value="weather" name="weather" class="btn btn-primary">Ver Tempo</button>
+            </div>
+        </div>
+    </form>
+    <div class="row">
+        <div class="col city">
+            {{weather.city}}, {{weather.country}}
+        </div>
+    </div>
+    <div class="row temp">
+        <div class="col-auto temp">
+            {{weather.temp}}
+        </div>
+        <div class="col icon">
+            <img src="{{weather.icon}}">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col desc">
+            {{weather.desc}}
+        </div>
     </div>
 
 {% endblock %}
