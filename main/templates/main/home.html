@@ -1,8 +1,97 @@
 {% extends "main/base.html" %}
+{% load static %}
+{% load mathfilters %}
+{% load index %}
+{% load order_by %}
 
-{% block title %}João's WebSite - Home{% endblock %}
+{% block head %}  
+    <link rel='stylesheet' type="text/css" href="{% static '/css/home.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block title %}SSU - Home{% endblock %}
 
 {% block content %}
-    <h1>Home</h1>
+    <h3>O que vais fazer hoje?</h3>
+    <div class="table-wrapper-scroll-y table-responsive my-custom-scrollbar">
+        <table class="table table-hover table-striped mb-0" id="myTable" >
+            <thead>
+                <tr class="tr_head">
+                  <th  scope="col"onclick="sortTable(0)" >Lista</th>
+                  <th scope="col" onclick="sortTable(1)" >Tipo</th>
+                  <th scope="col" onclick="sortEstado(2)" >Estado<i class="fas fa-minus" id = "sort_%"></i></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for td in user.todolist.all %}
+                    <tr class="link" onclick="redirect({{td.id}})">
+                        <td>{% if td.list_type == "Casa" %}
+                            <i class="fas fa-home"></i>
+                        {% elif  td.list_type == "Trabalho" %}
+                            <i class="fas fa-briefcase"></i>
+                        {% elif  td.list_type == "Universidade" %}
+                            <i class="fas fa-graduation-cap"></i>
+                        {% elif  td.list_type == "Hobby" %}
+                            <i class="fas fa-mug-hot"></i>
+                        {% else %}
+                            <i class="fas fa-list"></i>
+                        {% endif %}{{td.name}}</th>
+                        <td>{{td.list_type}}</th>
+                        <td>
+                            {% if td.finish == True %}
+                                <i class="fas fa-check"></i>
+                            {% elif percent|index:forloop.counter0 == "100%" %}
+                                <i class="fas fa-check"></i>
+                            {% else %}
+                                {{percent|index:forloop.counter0}}
+                            {% endif %}
+                        </th>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <hr class="mt-4 mb-3">
+    <form action="/" method="post">
+        {% csrf_token %}
+        <div class="form-row mt-4">
+            <div class="col-md-4 mb-3">
+                <input type="text" name="city" placeholder="ex. Lisboa, Madrid " class="form-control input">
+                {% if weather == "404" %}
+                    <div class="not_found">
+                        Cidade não encrontrada
+                    </div>
+                {% endif %}
+            </div>
+            <div class="col-md-4 mb-3">
+                <button type="submit" value="weather" name="weather" class="btn btn-primary">Ver Tempo</button>
+            </div>
+        </div>
+    </form>
+    {% if weather == "404" %}
+    {% else %}
+        <div class="row">
+            <div class="col city">
+                {{weather.city}}, {{weather.country}}
+            </div>
+        </div>
+        <div class="row temp">
+            <div class="col-auto temp">
+                {{weather.temp}}
+            </div>
+            <div class="col icon">
+                <img src="{{weather.icon}}">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col desc">
+                {{weather.desc}}
+            </div>
+        </div>
+    {% endif %}
 
+{% endblock %}
+
+{% block js %}
+    <script src="{% static '/js/home.js' %}"></script>
 {% endblock %}

@@ -1,5 +1,12 @@
 {% extends "main/base.html" %}
-{% block title %}João's WebSite - Lista{% endblock %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block title %}SSU - Tarefas{% endblock %}
+{% block head %}  
+    <link rel='stylesheet' type="text/css" href="{% static '/css/list.css' %}">
+{% endblock %}
+
+{% block body %}{% endblock %}
 
 {% block content %}
     <div class="row">
@@ -10,32 +17,79 @@
             <p>{{ls.list_type}}</p>
         </div>
     </div>
-    <form method="post" action="#">
+    <form method="post" action="" class="form-group">
+        {% if ls.item_set.all.count == 0 %}
+                <p class="none_items">Não tens nenhum tarefa criada! Cria uma com os campos em baixo.<i class="fas fa-arrow-down"></i></p>
+        {% endif %}
         {% csrf_token %}
         {% for item in ls.item_set.all %}
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <div class="input-group-text">
                     {% if item.complete == False %}
-                        <input type="checkbox", value = "clicked", name="c{{item.id}}">
+                        {% if ls.finish == True %}
+                            <input type="checkbox", value = "clicked", name="c{{item.id}}" checked disabled>
+                        {% else %}
+                            <input type="checkbox", value = "clicked", name="c{{item.id}}">
+                        {% endif %}
                     {% else %}
-                        <input type="checkbox", value = "clicked", name="c{{item.id}}" checked>
+                        {% if ls.finish == True %}
+                            <input type="checkbox", value = "clicked", name="c{{item.id}}" disabled checked>
+                        {% else %}
+                            <input type="checkbox", value = "clicked", name="c{{item.id}}" checked>
+                        {% endif %}
                     {% endif %}
                 </div>
             </div>
-            <input type="text", value="{{item.text}}", class="form-control" readonly>   
+            {% if item.complete == False %}
+                <input type="text", value="{{item.text}}", class="form-control {{item.item_priority}}" id='{{item.id}}' name="t{{item.id}}" readonly>
+            {% else %} 
+                <input type="text", value="{{item.text}}", class="form-control done {{item.item_priority}}" id='{{item.id}}' name="t{{item.id}}" readonly>
+            {% endif %}
+            <input type="text" value="{{item.deadline_date}}" id="d{{item.id}}" name="d{{item.id}}" class="form-control date" readonly>
+            <button onclick='edit({{item.id}})' class="btn btn-success btn-lm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit" ><i class="fas fa-pen"></i></button>
+            <button class="btn btn-danger btn-lm round" type="submit" data-toggle="tooltip" data-placement="top" value='{{item.id}}' name='delete' title='Eliminar este item'><i class="far fa-trash-alt"></i></button> 
         </div>
         {% endfor %}
-
-        <div class="input-group mb-3">
-            <input type ="text", name="new">
-        </div>
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <button type = "submit", name="newItem", value="newItem", class="btn btn-success">Add Item</button>
+        <div class="form-inline">
+            <div class="my-1 mr-2">
+                <button onclick='validateForm2()' type='submit' name="save", value="save", class="btn btn-info">Guardar</button>
+            </div>
+            <div class="custom-switch my-1 mr-sm-2">
+                <div class="custom-control custom-switch">
+                    {% if ls.finish == True %}
+                        <input type="checkbox" class="custom-control-input" id="customSwitch1" name="complete" value = "clicked" checked>
+                    {% else %}
+                        <input type="checkbox" class="custom-control-input" id="customSwitch1" name="complete" value = "clicked">
+                    {% endif %}
+                    <label class="custom-control-label" for="customSwitch1">Terminar esta lista de tarefas</label>
+                </div>
             </div>
         </div>
 
-        <button type = "submit", name="save", value="save", class="btn btn-info">Guardar</button>
+        <div class="form-group"></div>
+        
+        <div class="form-group">
+            <input type="text" class="form-control" name="new" placeholder="Novo Item", id='new' {% if ls.finish == True %} disabled {% endif %}>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <select class="custom-select" name='prio' {% if ls.finish == True %} disabled {% endif %} >
+                    <option selected>Prioridade</option>
+                    <option style="background-color:rgba(255, 89, 89, 0.65);" value="Alta">Alta</option>
+                    <option style="background-color:rgba(250, 208, 79, 0.65);" value="Media">Media</option>
+                    <option style="background-color:rgba(81, 210, 102, 0.65);" value="Baixa">Baixa</option>
+                </select>
+            </div>
+            <div class="col">
+            <input type="datetime-local" class="form-control" placeholder="DeadLine" name='date'  {% if ls.finish == True %} disabled {% endif %} >
+            </div>
+        </div>
+        <div class="form-group"></div>
+        <button type="submit" onclick='validateForm()' name="newItem", value="newItem", class="btn btn-success"  {% if ls.finish == True %} disabled {% endif %}>Add Item</button>
     </form>
 {% endblock%}
+
+{% block js %}
+    <script src="{% static '/js/list.js' %}"></script>
+{% endblock %}

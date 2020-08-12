@@ -1,0 +1,80 @@
+input.done{
+    text-decoration: line-through;
+    color: rgb(131, 153, 156);
+}
+
+button.round{
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
+
+    border-bottom-right-radius: 4px;
+    border-top-right-radius: 4px;
+}
+input.Alta.active, input.Media.active, input.Baixa.active{
+    background-color: rgb(233, 236, 239);
+}
+input.Alta{
+    font-weight: bold;
+    background: hsla(210, 16%, 93%, 1);
+
+    background: linear-gradient(180deg, hsla(210, 16%, 93%, 1) 30%, hsla(0, 90%, 75%, 1) 68%, hsla(0, 100%, 67%, 0.7) 100%);
+    
+    background: -moz-linear-gradient(180deg, hsla(210, 16%, 93%, 1) 30%, hsla(0, 90%, 75%, 1) 68%, hsla(0, 100%, 67%, 0.7) 100%);
+    
+    background: -webkit-linear-gradient(180deg, hsla(210, 16%, 93%, 1) 30%, hsla(0, 90%, 75%, 1) 68%, hsla(0, 100%, 67%, 0.7) 100%);
+    
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#E9ECEF", endColorstr="#F98888", GradientType=1 );
+}
+
+input.Media{
+    font-weight: 600;
+    background: hsla(210, 16%, 93%, 1);
+
+    background: linear-gradient(180deg, hsla(210, 16%, 93%, 1) 30%, hsla(38, 87%, 72%, 1) 68%, hsla(38, 91%, 55%, 0.7) 100%);
+    
+    background: -moz-linear-gradient(180deg, hsla(210, 16%, 93%, 1) 30%, hsla(38, 87%, 72%, 1) 68%, hsla(38, 91%, 55%, 0.7) 100%);
+    
+    background: -webkit-linear-gradient(180deg, hsla(210, 16%, 93%, 1) 30%, hsla(38, 87%, 72%, 1) 68%, hsla(38, 91%, 55%, 0.7) 100%);
+    
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#E9ECEF", endColorstr="#F6C87A", GradientType=1 );
+}
+
+input.Baixa{
+    font-weight: 500;
+    background: hsla(210, 16%, 93%, 1);
+
+    background: linear-gradient(180deg, hsla(210, 16%, 93%, 1) 30%, hsla(130, 64%, 71%, 1) 68%, hsla(130, 59%, 57%, 0.7) 100%);
+    
+    background: -moz-linear-gradient(180deg, hsla(210, 16%, 93%, 1) 30%, hsla(130, 64%, 71%, 1) 68%, hsla(130, 59%, 57%, 0.7) 100%);
+    
+    background: -webkit-linear-gradient(180deg, hsla(210, 16%, 93%, 1) 30%, hsla(130, 64%, 71%, 1) 68%, hsla(130, 59%, 57%, 0.7) 100%);
+    
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#E9ECEF", endColorstr="#84E494", GradientType=1 );
+}
+
+div.row{
+    margin-bottom: 20px;
+}
+div.col{
+    padding-left: 0%;
+}
+
+
+@media screen and (max-width: 768px) {
+    input.date{
+        display: none;
+    }
+
+    div.col{
+        padding-left: 15px;
+    }
+}
+
+.fas.fa-arrow-down{
+    margin-left: 10px;
+}
+
+.none_items{
+    justify-content: center;
+    font-weight: 500;
+}

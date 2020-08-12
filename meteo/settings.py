@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
+    'mathfilters',
     'main.apps.MainConfig',
     'register.apps.RegisterConfig',
 ]
@@ -50,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'ipinfo_django.middleware.IPinfo',
 ]
 
 ROOT_URLCONF = 'meteo.urls'
@@ -132,3 +134,12 @@ CRISPY_TEMPLATE_PACK="bootstrap4"
 
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
+
+IPINFO_TOKEN = 'cb40569dc738b8'
+IPINFO_SETTINGS = {
+    'cache_options': {
+        'ttl':30,
+        'maxsize': 128
+    },
+}
+IPINFO_FILTER = lambda request: request.scheme == 'http'

@@ -1,13 +1,46 @@
-{% extends "main/base.html" %}
-{% block title %}SSU - Lista{% endblock %}
+{% extends "main/base.html" %} 
+{% load static %}
+{% block title %}SSU - Lista{% endblock %} 
+
+{% block head %}  
+    <link rel='stylesheet' type="text/css" href="{% static '/css/view.css' %}">
+{% endblock %}
 
 {% block content %}
 <div class="content">
-<h2>Lista de Tarefas</h2>
-<div class="list-group">
-    {% for td in user.todolist.all %}
-        <a href="/{{td.id}}" class="list-group-item list-group-item-action">{{td.name}} - {{td.list_type}}</a>
-    {% endfor %}
+    <h2>Lista de Tarefas</h2>
+    <form method="post" action="" class="form-group">
+        {% csrf_token %}
+        <div class="list-group">
+            {% for td in user.todolist.all %}
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text icon" title="{{td.list_type}}" id="basic-addon2"><a href="/{{td.id}}" class="list-group-item-action">
+                                                                        {% if td.list_type == "Casa" %}
+                                                                            <i class="fas fa-home"></i>
+                                                                        {% elif  td.list_type == "Trabalho" %}
+                                                                            <i class="fas fa-briefcase"></i>
+                                                                        {% elif  td.list_type == "Universidade" %}
+                                                                            <i class="fas fa-graduation-cap"></i>
+                                                                        {% elif  td.list_type == "Hobby" %}
+                                                                            <i class="fas fa-mug-hot"></i>
+                                                                        {% else %}
+                                                                            <i class="fas fa-list"></i>
+                                                                        {% endif %}
+                                                                        </a>
+                                                                    </span>
+                    </div>
+                    <input onclick="redirect({{td.id}})" id="{{td.id}}" name="t{{td.id}}" readonly type="text" href="/{{td.id}}" value="{{td.name}}" class="txt form-control list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                    <button id="s{{td.id}}" value="{{td.id}}" name="save" type="submit" class="btn btn-info btn-lm rounded-0 save"><i class="far fa-save"></i></button>
+                    <button onclick='edit({{td.id}})' class="btn btn-success btn-lm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit" ><i class="fas fa-pen"></i></button>
+                    <button class="btn btn-danger btn-lm round" type="submit" data-toggle="tooltip" data-placement="top" value='{{td.id}}' name='delete' title='Eliminar este item'><i class="far fa-trash-alt"></i></button>            
+                </div>
+            {% endfor %}
+        </div>
+    </form>
 </div>
-</div>
+{% endblock %}
+
+{% block js %}
+    <script src="{% static '/js/view.js' %}"></script>
 {% endblock %}

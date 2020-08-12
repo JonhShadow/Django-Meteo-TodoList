@@ -1,0 +1,108 @@
+th{
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    
+}
+th:hover{
+    background-color: #a7ffe2ee;
+}
+
+table th {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 0;
+    background: #98cdf7;
+}
+
+.fas.fa-home{
+    color: #1B8A95
+}
+
+.fas.fa-graduation-cap{
+    color: black;
+}
+
+.fas.fa-briefcase{
+    color: coral;
+}
+
+.fas.fa-mug-hot{
+    color: rebeccapurple;
+}
+
+.fas.fa-list{
+    color: #FFA500;
+}
+
+i{
+    margin-right: 10px;
+}
+
+.fas.fa-check{
+    align-items: center;
+    color: green;
+}
+
+.link{
+    cursor: pointer;
+}
+
+th i{
+    align-items: center;
+    margin-left: 6px;
+}
+
+.fas.fa-minus.sort_up:before{
+    content: "\f0de";
+
+}
+
+.fas.fa-minus.sort_down:before{
+    content: "\f0dd";
+}
+
+.table-wrapper-scroll-y{
+    display: block;
+}
+
+.my-custom-scrollbar{
+    position: relative;
+    height: 30vh;
+    overflow: auto;
+}
+h3{
+    margin-bottom: 2vh;
+}
+
+.city{
+    font-family: 'Montserrat', sans-serif;
+    color: #1B8A95;
+    font-size: 40px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+.temp{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 55px;
+    letter-spacing: 2px;
+}
+.desc{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 30px;
+    letter-spacing: 2px;
+}
+
+.row.temp{
+    display: flex;
+    align-items: center;
+}
+.not_found{
+    font-family: 'Open Sans', sans-serif;
+    margin-top: 1vh;
+    letter-spacing: 1px;
+    color: #1B8A95;
+}
+
+
+
