@@ -1,1 +1,1 @@
-web:gunicorn meteo.wsgi --log-file -
+web: gunicorn meteo.wsgi --log-file -
