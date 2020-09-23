@@ -77,7 +77,9 @@ def home(response):
         icon = weather['weather'][0]['icon']
         icon = str('http://openweathermap.org/img/wn/'+icon+'@2x.png')
         
-        w = { 'city':weather['name'], 'country':weather['sys']['country'], 'desc':weather['weather'][0]['description'], 'temp':weather['main']['temp'], 'icon':icon }
+        temp = round(weather['main']['temp'])
+        
+        w = { 'city':weather['name'], 'country':weather['sys']['country'], 'desc':weather['weather'][0]['description'], 'temp':temp, 'icon':icon }
         print(w)
         return w
     
